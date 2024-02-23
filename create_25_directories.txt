@@ -1,0 +1,26 @@
+#!/bin/bash
+file_name=adriana
+
+# check if the folders exists
+check_folders=$(ls | grep $file_name | sort -V | tail -n 1 | cut -c 8-10)
+
+if [ -n "$check_folder" ]
+then
+        declare -i start_folder_number=1
+        declare -i end_folder_number=$start_fodler_number+25
+        #echo $start_folder_number, $end_folder_number
+else
+        declare -i start_folder_number=$check_folders+1
+        declare -i end_folder_number=$start_folder_number+24
+        #echo $start_folder_number, $end_folder_number
+fi
+
+declare -i counter=$start_folder_number
+while [ $counter -le $end_folder_number ]
+do
+        touch $file_name$counter
+        ((counter++))
+done
+
+
+echo "`ls -l | sort -V`"
